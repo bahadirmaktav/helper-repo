@@ -12,6 +12,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 
 add_executable(statechart_eg1 statechart_eg1.cpp)
 add_executable(statechart_eg2 statechart_eg2.cpp)
+add_executable(statechart_eg3 statechart_eg3.cpp)
 
 # Include Boost headers
 # target_include_directories(boost_statechart_test PRIVATE ${Boost_INCLUDE_DIRS})

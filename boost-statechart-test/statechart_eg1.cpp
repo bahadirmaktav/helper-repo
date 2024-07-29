@@ -48,14 +48,14 @@ struct B : sc::simple_state<B, A> {
 struct D;
 struct C : sc::simple_state<C, A> {
   typedef mpl::list<
-    sc::transition<EvCwD, D>,
+    sc::custom_reaction<EvCwD>,
     sc::transition<EvBwC, B>> reactions;
   C() { std::cout << "C Entry Action called!" << std::endl; }
   ~C() { std::cout << "C Exit Action called!" << std::endl; }
-  // sc::result react(const EvCwD&) {
-  //   std::cout << "C -> D Transition Action called!" << std::endl;
-  //   return transit<D>();
-  // }
+  sc::result react(const EvCwD& ev) {
+    std::cout << "C -> D Transition Action called with transition data " << ev.data << "!" << std::endl;
+    return transit<D>();
+  }
 };
 struct E;
 struct G;
