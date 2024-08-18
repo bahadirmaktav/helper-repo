@@ -1,0 +1,29 @@
+cmake_minimum_required(VERSION 3.5.0)
+project(example_executable 
+    VERSION 0.1.0
+    LANGUAGES CXX
+)
+
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_DEBUG_POSTFIX -d)
+
+set(INSTALL_ROOT_DIR ${CMAKE_SOURCE_DIR}/install)
+if(DEFINED ENV{INSTALL_ROOT_DIR})
+    set(INSTALL_ROOT_DIR $ENV{INSTALL_ROOT_DIR})
+endif()
+
+set(CMAKE_INSTALL_PREFIX 
+    ${INSTALL_ROOT_DIR}/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}/${PROJECT_VERSION}
+)
+
+set(EXAMPLE_STATIC_LIB example_static_lib)
+set(EXAMPLE_STATIC_LIB_VERSION 0.1.0) 
+list(APPEND CMAKE_PREFIX_PATH ${INSTALL_ROOT_DIR}/${EXAMPLE_STATIC_LIB}/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}/${EXAMPLE_STATIC_LIB_VERSION})
+
+find_package(${EXAMPLE_STATIC_LIB} ${EXAMPLE_STATIC_LIB_VERSION} REQUIRED)
+
+add_executable(example_executable main.cpp)
+
+target_link_libraries(example_executable ${example_static_lib_LIBRARIES})
+
