@@ -1,26 +1,23 @@
+## PROJECT SETTINGS ##
 cmake_minimum_required(VERSION 3.15.0)
-project(example_static_lib
+project(math_types
     VERSION 0.1.0
     LANGUAGES CXX
 )
 
+## CXX SETTINGS ##
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_DEBUG_POSTFIX -d)
 
-include(CMakePackageConfigHelpers)
-include(GNUInstallDirs)
-
-set(EXAMPLE_STATIC_LIB example_static_lib)
-
-set(INSTALL_ROOT_DIR ${CMAKE_SOURCE_DIR}/install)
-if(DEFINED ENV{INSTALL_ROOT_DIR})
-    set(INSTALL_ROOT_DIR $ENV{INSTALL_ROOT_DIR})
+## DEPENDENCIES CONFIGURATIONS ##
+set(DEPENDENCIES_ROOT_DIR /home)
+if(DEFINED ENV{DEPENDENCIES_ROOT_DIR})
+    set(DEPENDENCIES_ROOT_DIR $ENV{DEPENDENCIES_ROOT_DIR})
 endif()
 
-set(CMAKE_INSTALL_PREFIX 
-    ${INSTALL_ROOT_DIR}/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}/${PROJECT_VERSION}
-)
+## BUILD CONFIGURATIONS ##
+set(MATH_TYPES math_types)
 
 file(GLOB_RECURSE sources
     ${CMAKE_SOURCE_DIR}/src/*.c
@@ -38,9 +35,9 @@ file(GLOB_RECURSE public_headers
     ${CMAKE_SOURCE_DIR}/inc/*.hpp
 )
 
-add_library(${EXAMPLE_STATIC_LIB} STATIC ${sources})
+add_library(${MATH_TYPES} STATIC ${sources})
 
-target_include_directories(${EXAMPLE_STATIC_LIB}
+target_include_directories(${MATH_TYPES}
     PRIVATE
         ${CMAKE_SOURCE_DIR}/src
     PUBLIC
@@ -48,8 +45,21 @@ target_include_directories(${EXAMPLE_STATIC_LIB}
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
-install(TARGETS ${EXAMPLE_STATIC_LIB}
-    EXPORT ${EXAMPLE_STATIC_LIB}Targets
+## INTSTALL CONFIGURATIONS ##
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
+set(INSTALL_PREFIX_ROOT_DIR ${CMAKE_SOURCE_DIR}/install)
+if(DEFINED ENV{INSTALL_PREFIX_ROOT_DIR})
+    set(INSTALL_PREFIX_ROOT_DIR $ENV{INSTALL_PREFIX_ROOT_DIR})
+endif()
+
+set(CMAKE_INSTALL_PREFIX 
+    ${INSTALL_PREFIX_ROOT_DIR}/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_VERSION}/${CMAKE_BUILD_TYPE}
+)
+
+install(TARGETS ${MATH_TYPES}
+    EXPORT ${MATH_TYPES}Targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
@@ -57,25 +67,25 @@ install(TARGETS ${EXAMPLE_STATIC_LIB}
 
 install(FILES ${public_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-install(EXPORT ${EXAMPLE_STATIC_LIB}Targets
-    FILE ${EXAMPLE_STATIC_LIB}Targets.cmake
+install(EXPORT ${MATH_TYPES}Targets
+    FILE ${MATH_TYPES}Targets.cmake
     NAMESPACE ${CMAKE_PROJECT_NAME}::
     DESTINATION cmake
 )
 
 write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/${EXAMPLE_STATIC_LIB}ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}ConfigVersion.cmake
     VERSION ${PROJECT_VERSION}
     COMPATIBILITY AnyNewerVersion
 )
 
 configure_package_config_file(${CMAKE_SOURCE_DIR}/cmake/Config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/${EXAMPLE_STATIC_LIB}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}Config.cmake
     INSTALL_DESTINATION cmake
 )
 
 install(FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/${EXAMPLE_STATIC_LIB}Config.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/${EXAMPLE_STATIC_LIB}ConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}Config.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}ConfigVersion.cmake
     DESTINATION cmake
 )
