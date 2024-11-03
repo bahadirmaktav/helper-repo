@@ -1,0 +1,19 @@
+@PACKAGE_INIT@
+
+## DEPENDENCIES CONFIGURATIONS ##
+set(MATH_TYPES_PACKAGE_NAME math_types)
+set(MATH_TYPES_PACKAGE_VERSION 0.1.0)
+set(MATH_TYPES_PACKAGE_CONFIG_DIR ${INSTALL_ROOT_DIR}/${MATH_TYPES_PACKAGE_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_VERSION}/${CMAKE_BUILD_TYPE}/cmake)
+
+list(APPEND CMAKE_PREFIX_PATH ${MATH_TYPES_PACKAGE_CONFIG_DIR})
+
+include(CMakeFindDependencyMacro)
+find_dependencies(${MATH_TYPES_PACKAGE_NAME} ${MATH_TYPES_PACKAGE_VERSION} REQUIRED CONFIG)
+
+## BUILD CONFIGURATIONS ##
+include(${CMAKE_CURRENT_LIST_DIR}/math_functionsTargets.cmake)
+
+set(math_functions_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/../include)
+set(math_functions_LIBRARIES math_functions::math_functions)
+
+check_required_components(math_functions)

@@ -1,0 +1,40 @@
+## PROJECT SETTINGS ##
+cmake_minimum_required(VERSION 3.19.0)
+project(math_types
+    VERSION 1.0.0
+    LANGUAGES CXX
+)
+
+## CXX SETTINGS ##
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_DEBUG_POSTFIX -d)
+
+## COMMON CONFIGURATIONS ##
+set(INSTALL_ROOT_DIR "C:/Program Files")
+if(DEFINED ENV{INSTALL_ROOT_DIR})
+    set(INSTALL_ROOT_DIR $ENV{INSTALL_ROOT_DIR})
+endif()
+set(BUILD_TESTS OFF)
+if(DEFINED ENV{BUILD_TESTS})
+    set(BUILD_TESTS $ENV{BUILD_TESTS})
+endif()
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
+## DEPENDENCIES CONFIGURATIONS ##
+include(Dependencies)
+
+## INSTALL CONFIGURATIONS ##
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
+set(CMAKE_INSTALL_PREFIX 
+    ${INSTALL_ROOT_DIR}/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_VERSION}/${CMAKE_BUILD_TYPE}
+)
+
+## SUBDIRECTORIES ##
+add_subdirectory(development)
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif()

@@ -1,0 +1,28 @@
+{
+    "cmake.options.statusBarVisibility": "visible",
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+    "cmake.copyCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "c-cpp-flylint.flexelint.enable": false,
+    "c-cpp-flylint.clang.enable": false,
+    "c-cpp-flylint.flawfinder.enable": false,
+    "c-cpp-flylint.lizard.enable": false,
+    "c-cpp-flylint.clang.blocks": false,
+    "c-cpp-flylint.cppcheck.enable": true,
+    "c-cpp-flylint.run": "onSave",
+    "c-cpp-flylint.cppcheck.extraArgs": [
+        "--enable=all",
+        "--inconclusive",
+        "--verbose",
+        "--std=c++11"
+    ],
+    "C_Cpp.formatting": "clangFormat",
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "editor.stickyScroll.enabled": false,
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "workbench.editor.enablePreview": false,
+    "terminal.integrated.defaultProfile.windows": "Command Prompt"
+}
