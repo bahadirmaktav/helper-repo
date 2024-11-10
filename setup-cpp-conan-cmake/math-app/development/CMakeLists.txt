@@ -7,7 +7,7 @@ file(GLOB_RECURSE sources
     ${CMAKE_SOURCE_DIR}/development/src/*.cpp
 )
 
-add_library(${MATH_APP} STATIC ${sources})
+add_executable(${MATH_APP} ${sources})
 
 target_include_directories(${MATH_APP}
     PRIVATE

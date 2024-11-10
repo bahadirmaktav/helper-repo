@@ -6,7 +6,7 @@
 ## BUILD CONFIGURATIONS ##
 include(${CMAKE_CURRENT_LIST_DIR}/math_typesTargets.cmake)
 
-set(math_types_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/../include)
+set(math_types_INCLUDE_DIRS ${CMAKE_CURRENT_LIST_DIR}/../../include)
 set(math_types_LIBRARIES math_types::math_types)
 
 check_required_components(math_types)

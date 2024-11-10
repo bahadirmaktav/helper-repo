@@ -32,25 +32,27 @@ install(DIRECTORY ${CMAKE_SOURCE_DIR}/development/include/
                    PATTERN "*.hxx"
 )
 
-# install(EXPORT ${MATH_TYPES}Targets
-#     FILE ${MATH_TYPES}Targets.cmake
-#     NAMESPACE ${CMAKE_PROJECT_NAME}::
-#     DESTINATION cmake
-# )
+if(NOT USE_CONAN)
+    install(EXPORT ${MATH_TYPES}Targets
+        FILE ${MATH_TYPES}Targets.cmake
+        NAMESPACE ${CMAKE_PROJECT_NAME}::
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+    )
 
-# write_basic_package_version_file(
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}ConfigVersion.cmake
-#     VERSION ${PROJECT_VERSION}
-#     COMPATIBILITY SameMajorVersion
-# )
+    write_basic_package_version_file(
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}ConfigVersion.cmake
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
 
-# configure_package_config_file(${CMAKE_SOURCE_DIR}/cmake/Config.cmake.in
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}Config.cmake
-#     INSTALL_DESTINATION cmake
-# )
+    configure_package_config_file(${CMAKE_SOURCE_DIR}/cmake/Config.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}Config.cmake
+        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+    )
 
-# install(FILES
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}Config.cmake
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}ConfigVersion.cmake
-#     DESTINATION cmake
-# )
+    install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}Config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_TYPES}ConfigVersion.cmake
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake
+    )
+endif()

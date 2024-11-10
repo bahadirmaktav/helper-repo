@@ -2,8 +2,9 @@ from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 class MathTypesRecipe(ConanFile):
+    # Common configuration
     name = "math_types"
-    version = "1.0"
+    version = "1.0.0"
     package_type = "library"
 
     # Optional metadata
@@ -15,8 +16,8 @@ class MathTypesRecipe(ConanFile):
 
     # Binary configuration
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False]}
-    default_options = {"shared": False}
+    options = { "shared": [True, False], "build_tests": [True, False] }
+    default_options = { "shared": False, "build_tests": False }
 
     # Sources are located in the same place as this recipe, copy them to the recipe
     exports_sources = "CMakeLists.txt", "cmake/*", "development/*"
@@ -24,10 +25,16 @@ class MathTypesRecipe(ConanFile):
     # Package test folder configuration
     test_package_folder = "test/package"
 
+    def validate(self):
+        pass
+
     def config_options(self):
         pass
 
     def configure(self):
+        pass
+
+    def source(self):
         pass
 
     def layout(self):
@@ -37,6 +44,7 @@ class MathTypesRecipe(ConanFile):
         deps = CMakeDeps(self)
         deps.generate()
         tc = CMakeToolchain(self)
+        tc.variables["USE_CONAN"] = True
         tc.generate()
 
     def build(self):
@@ -50,6 +58,4 @@ class MathTypesRecipe(ConanFile):
 
     def package_info(self):
         self.cpp_info.libs = ["math_types"]
-        self.cpp_info.libdirs = ["lib"]
-        self.cpp_info.includedirs = ["include"]
 

@@ -1,5 +1,5 @@
 ## PROJECT SETTINGS ##
-cmake_minimum_required(VERSION 3.19.0)
+cmake_minimum_required(VERSION 3.23.0)
 project(math_types
     VERSION 1.0.0
     LANGUAGES CXX
@@ -7,18 +7,15 @@ project(math_types
 
 ## CXX SETTINGS ##
 set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_DEBUG_POSTFIX -d)
 
 ## COMMON CONFIGURATIONS ##
-set(INSTALL_ROOT_DIR "C:/Program Files")
-if(DEFINED ENV{INSTALL_ROOT_DIR})
-    set(INSTALL_ROOT_DIR $ENV{INSTALL_ROOT_DIR})
-endif()
-set(BUILD_TESTS OFF)
-if(DEFINED ENV{BUILD_TESTS})
-    set(BUILD_TESTS $ENV{BUILD_TESTS})
-endif()
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+option(INSTALL_ROOT_DIR "Sets installation and dependecies root directory." "C:/Program Files")
+option(BUILD_TESTS "Builds the tests." OFF)
+option(USE_CONAN "Modifies instal configuration for Conan usage (Sets to TRUE by Conan recipe)." FALSE)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
@@ -30,7 +27,7 @@ include(CMakePackageConfigHelpers)
 include(GNUInstallDirs)
 
 set(CMAKE_INSTALL_PREFIX 
-    ${INSTALL_ROOT_DIR}/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_VERSION}/${CMAKE_BUILD_TYPE}
+    ${INSTALL_ROOT_DIR}/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_VERSION}/v${PROJECT_VERSION}
 )
 
 ## SUBDIRECTORIES ##

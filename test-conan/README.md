@@ -10,14 +10,31 @@ $ pip install -r requirements.txt
 
 ### Profile Commands
 ```
-$ conan profile detect --force
 # İşletim sistemini, varsayılan derleyiciyi tespit eder varsayılan olarak Release seçer ve varsayılan bir profil yaratır.
+$ conan profile detect --force
 
-$ conan profile path <profile_name>
 # Verilen profilin hangi dizinde bulunduğunu yazdırır.
+$ conan profile path <profile_name>
 
-$ conan create . --profile=<profile_name>
 #
+$ conan create . --profile=<profile_name>
+```
+
+### Package Development Flow Commands
+```
+#
+$ conan source .
+
+#
+$ conan install .
+
+#
+$ conan build . 
+	veya
+$ cmake --preset conan-release && cmake --build --preset conan-release
+
+#
+$ conan export-pkg
 ```
 
 ### Build Commands
@@ -57,14 +74,13 @@ $ conan config home
 
 # Yeni bir "Hello World" C++ projesi yaratır.
 $ conan new cmake_lib -d name=hello -d version=1.0
+
+#
+$ conan list "<package_name>/<package_version>:*"
+
+#
+$ conan list *
+
+#
+$ conan remove *
 ```
-
-
-$ cmake --preset conan-debug
-$ cmake --build --preset conan-debug
-$ conan config home
-$ conan install . --output-folder=build --build=missing --settings=build_type=Debug
-$ conan install . --output-folder=build --build=missing --options=zlib/1.2.11:shared=True
-$ conan create . 	-> Can take same parameters with conan install
-$ conan list "hello/1.0:*"
-$ conan export-pkg . --profile=<profile_name>

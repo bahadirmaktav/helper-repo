@@ -37,25 +37,27 @@ install(DIRECTORY include/
                    PATTERN "*.hxx"
 )
 
-# install(EXPORT ${MATH_FUNCTIONS}Targets
-#     FILE ${MATH_FUNCTIONS}Targets.cmake
-#     NAMESPACE ${CMAKE_PROJECT_NAME}::
-#     DESTINATION cmake
-# )
+if(NOT USE_CONAN)
+    install(EXPORT ${MATH_FUNCTIONS}Targets
+        FILE ${MATH_FUNCTIONS}Targets.cmake
+        NAMESPACE ${CMAKE_PROJECT_NAME}::
+        DESTINATION cmake
+    )
 
-# write_basic_package_version_file(
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}ConfigVersion.cmake
-#     VERSION ${PROJECT_VERSION}
-#     COMPATIBILITY SameMajorVersion
-# )
+    write_basic_package_version_file(
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}ConfigVersion.cmake
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion
+    )
 
-# configure_package_config_file(${CMAKE_SOURCE_DIR}/cmake/Config.cmake.in
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}Config.cmake
-#     INSTALL_DESTINATION cmake
-# )
+    configure_package_config_file(${CMAKE_SOURCE_DIR}/cmake/Config.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}Config.cmake
+        INSTALL_DESTINATION cmake
+    )
 
-# install(FILES
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}Config.cmake
-#     ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}ConfigVersion.cmake
-#     DESTINATION cmake
-# )
+    install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}Config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${MATH_FUNCTIONS}ConfigVersion.cmake
+        DESTINATION cmake
+    )
+endif()

@@ -34,7 +34,7 @@ class MathAppRecipe(ConanFile):
         cmake_layout(self)
     
     def requirements(self):
-        self.requires("math_functions/1.0")
+        self.requires("math_functions/1.0.0")
 
     def generate(self):
         deps = CMakeDeps(self)
