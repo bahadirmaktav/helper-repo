@@ -17,6 +17,14 @@ target_include_directories(${MATH_TYPES}
 )
 
 ## INTSTALL CONFIGURATIONS ##
+include(CMakePackageConfigHelpers)
+include(GNUInstallDirs)
+
+set(CMAKE_INSTALL_PREFIX 
+    ${INSTALL_ROOT_DIR}/${PROJECT_NAME}/v${PROJECT_VERSION}/${CMAKE_SYSTEM_NAME}/${CMAKE_SYSTEM_VERSION}
+    CACHE PATH "Installation directory." FORCE
+)
+
 install(TARGETS ${MATH_TYPES}
     EXPORT ${MATH_TYPES}Targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

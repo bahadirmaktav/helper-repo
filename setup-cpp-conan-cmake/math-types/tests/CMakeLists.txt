@@ -5,6 +5,7 @@ find_package(GTest)
 
 enable_testing()
 include(GoogleTest)
+include(CTest)
 
 ## SUBDIRECTORIES ##
 add_subdirectory(unit)
