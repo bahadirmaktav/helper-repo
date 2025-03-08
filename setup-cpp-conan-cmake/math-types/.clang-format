@@ -2,8 +2,8 @@ BasedOnStyle: Google
 Language: Cpp
 ColumnLimit: 100
 Cpp11BracedListStyle: true
-IndentWidth: 4
+IndentWidth: 2
 PointerAlignment: Left
 SortIncludes: true
-TabWidth: 4
 UseTab: Never
+AllowShortFunctionsOnASingleLine: false
