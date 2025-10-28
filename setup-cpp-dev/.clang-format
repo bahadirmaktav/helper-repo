@@ -5,5 +5,6 @@ Cpp11BracedListStyle: true
 IndentWidth: 2
 PointerAlignment: Left
 SortIncludes: true
+TabWidth: 4
 UseTab: Never
 AllowShortFunctionsOnASingleLine: false

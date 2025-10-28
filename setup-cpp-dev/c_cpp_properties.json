@@ -1,10 +1,10 @@
 {
     "configurations": [
         {
-            "name": "Linux",
-            "compilerPath": "/usr/bin/g++",
+            "name": "Win32",
+            "compilerPath": "add-your-compiler-path",
             "cStandard": "c11",
-            "cppStandard": "c++14",
+            "cppStandard": "c++17",
             "intelliSenseMode": "windows-gcc-x64",
             "configurationProvider": "ms-vscode.cmake-tools",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json"

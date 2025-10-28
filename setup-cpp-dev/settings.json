@@ -8,7 +8,11 @@
     "cmake.copyCompileCommands": "${workspaceFolder}/build/compile_commands.json",
     "C_Cpp.formatting": "clangFormat",
     "C_Cpp.clang_format_style": "file:${workspaceFolder}/.clang-format",
+    "editor.defaultFormatter": "ms-vscode.cpptools",
+    "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', Consolas, 'Courier New', monospace",
+    "editor.fontSize": 13,
     "editor.stickyScroll.enabled": false,
-    "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json",
+    "sonarlint.pathToCompileCommands": "${workspaceFolder}\\build\\compile_commands.json",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
     "workbench.editor.enablePreview": false
 }
